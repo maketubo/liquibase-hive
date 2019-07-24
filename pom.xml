@@ -5,16 +5,13 @@
     <groupId>org.liquibase.ext.hive</groupId>
     <artifactId>liquibase-hive</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <name>liquibase-hive</name>
     <url>https://github.com/asm0dey/liquibase-hive</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <impala.jdbc.version>2.6.4</impala.jdbc.version>
-        <hive.jdbc.version>2.6.2</hive.jdbc.version>
         <liquibase.version>3.7.0</liquibase.version>
-        <uber.jar.name>${project.name}.jar</uber.jar.name>
     </properties>
 
     <dependencies>
@@ -29,8 +26,8 @@
         <dependency>
             <groupId>org.apache.hive</groupId>
             <artifactId>hive-jdbc</artifactId>
-            <version>3.1.1</version>
-            <scope>runtime</scope>
+            <version>3.1.0.3.0.1.0-187</version>
+<!--            <scope>runtime</scope>-->
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -58,40 +55,12 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-shade-plugin</artifactId>-->
-                <!--<version>3.2.0</version>-->
-                <!--<configuration>-->
-                    <!--<shadedArtifactAttached>false</shadedArtifactAttached>-->
-                    <!--<outputFile>target/${uber.jar.name}</outputFile>-->
-                    <!--<artifactSet>-->
-                        <!--<includes>-->
-                            <!--<include>*:*</include>-->
-                        <!--</includes>-->
-                    <!--</artifactSet>-->
-                    <!--<filters>-->
-                        <!--<filter>-->
-                            <!--<artifact>*:*</artifact>-->
-                            <!--<excludes>-->
-                                <!--<exclude>META-INF/*.SF</exclude>-->
-                                <!--<exclude>META-INF/*.DSA</exclude>-->
-                                <!--<exclude>META-INF/*.RSA</exclude>-->
-                            <!--</excludes>-->
-                        <!--</filter>-->
-                    <!--</filters>-->
-                <!--</configuration>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<phase>package</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>shade</goal>-->
-                        <!--</goals>-->
-                        <!--<configuration>-->
-                        <!--</configuration>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
         </plugins>
     </build>
+    <repositories>
+        <repository>
+            <id>HORTON</id>
+            <url>https://repo.hortonworks.com/content/repositories/releases/</url>
+        </repository>
+    </repositories>
 </project>
