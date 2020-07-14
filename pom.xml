@@ -1,19 +1,21 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>org.liquibase.ext.hive</groupId>
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+    <groupId>com.github.ext.hive</groupId>
     <artifactId>liquibase-hive</artifactId>
-    <packaging>jar</packaging>
-    <version>1.1.0</version>
+    <version>1.0.0</version>
     <name>liquibase-hive</name>
-    <url>https://github.com/asm0dey/liquibase-hive</url>
+    <url>https://github.com/maketubo/liquibase-hive</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <liquibase.version>3.7.0</liquibase.version>
-        <hive-jdbc.version>3.1.0.3.0.1.0-187</hive-jdbc.version>
-        <slf4j-api.version>1.7.25</slf4j-api.version>
+        <liquibase.version>3.8.4</liquibase.version>
+        <slf4j-api.version>1.7.30</slf4j-api.version>
     </properties>
 
     <dependencies>
@@ -27,16 +29,34 @@
         <dependency>
             <groupId>org.apache.hive</groupId>
             <artifactId>hive-jdbc</artifactId>
-            <version>${hive-jdbc.version}</version>
+            <version>2.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j-api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>jdk.tools</groupId>
+            <artifactId>jdk.tools</artifactId>
+            <version>1.6</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/tools.jar</systemPath>
         </dependency>
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.jar</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -49,10 +69,12 @@
             </plugin>
         </plugins>
     </build>
-    <repositories>
-        <repository>
-            <id>hortonworks</id>
-            <url>https://repo.hortonworks.com/content/repositories/releases/</url>
-        </repository>
-    </repositories>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
 </project>

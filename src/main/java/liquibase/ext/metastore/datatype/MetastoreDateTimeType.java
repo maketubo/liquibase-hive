@@ -4,12 +4,12 @@ import liquibase.database.Database;
 import liquibase.datatype.DataTypeInfo;
 import liquibase.datatype.DatabaseDataType;
 import liquibase.datatype.LiquibaseDataType;
-import liquibase.datatype.core.DateType;
+import liquibase.datatype.core.DateTimeType;
 import liquibase.ext.metastore.hive.database.HiveDatabase;
 
 @DataTypeInfo(name = "datetime", aliases = {"java.sql.Types.DATETIME"},
         minParameters = 0, maxParameters = 1, priority = LiquibaseDataType.PRIORITY_DATABASE)
-public class MetastoreDateTimeType extends DateType {
+public class MetastoreDateTimeType extends DateTimeType {
 
     @Override
     public DatabaseDataType toDatabaseDataType(Database database) {
