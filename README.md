@@ -1,5 +1,6 @@
+# project version
 <p align="left">
-  <a href="https://mvnrepository.com/artifact/org.liquibase/liquibase-core/3.8.4">
+  <a href="https://mvnrepository.com/artifact/com.github.maketubo/liquibase-hive/1.0.0">
     <img alt="maven" src="https://img.shields.io/maven-central/v/org.liquibase/liquibase-core/3.8.4">
   </a>
 
@@ -11,6 +12,9 @@
   </a>
 </p>
 
+# dependency version
+[![liquibase](https://img.shields.io/badge/liquibase-3.8.4-blue)](https://shields.io/) [![hive-jdbc](https://img.shields.io/badge/hive--jdbc-2.0.1-yellowgreen)](https://shields.io/) 
+
 # About liquibase-hive
 Liquibase-hive is a [Liquibase](http://www.liquibase.org/) [extension](https://liquibase.jira.com/wiki/spaces/CONTRIB/overview), which adds support for Apache Hive.
 Because the old project has not been updated for a long time, so we fork it and will continue to update.
@@ -18,7 +22,7 @@ Because the old project has not been updated for a long time, so we fork it and 
 # How to use
 ```
 <dependency>
-    <groupId>com.github.ext.hive</groupId>
+    <groupId>com.github.maketubo</groupId>
     <artifactId>liquibase-hive</artifactId>
     <version>1.0.0</version>
 </dependency>
