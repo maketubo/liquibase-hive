@@ -1,47 +1,33 @@
-# Table of contents
-1. [About liquibase-hive](#about-liquibase-hive)
-1. [How to use](#how-to-use)
-    - [with a Maven plugin](#with-a-maven-plugin)
-    - [Liquibase-hive specific configuration](#liquibase-hive-specific-configuration)
+# project version
+<p align="left">
+  <a href="https://mvnrepository.com/artifact/com.github.maketubo/liquibase-hive/1.0.0">
+    <img alt="maven" src="https://img.shields.io/maven-central/v/com.github.maketubo/liquibase-hive/1.0.0">
+  </a>
+
+  <a href="https://www.apache.org/licenses/LICENSE-2.0">
+    <img alt="license" src="https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square">
+  </a>
+  <a href="pleaseSendAMail2Me">
+    <img alt="email" src="https://badges.gitter.im/Join%20Chat.svg">
+  </a>
+</p>
+
+# dependency version
+[![liquibase](https://img.shields.io/badge/liquibase-3.8.4-blue)](https://shields.io/) [![hive-jdbc](https://img.shields.io/badge/hive--jdbc-2.0.1-yellowgreen)](https://shields.io/) 
 
 # About liquibase-hive
 Liquibase-hive is a [Liquibase](http://www.liquibase.org/) [extension](https://liquibase.jira.com/wiki/spaces/CONTRIB/overview), which adds support for Apache Hive.
+Because the old project has not been updated for a long time, so we fork it and will continue to update.
 
 # How to use
+```
+<dependency>
+    <groupId>com.github.maketubo</groupId>
+    <artifactId>liquibase-hive</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
 
-## with a Maven plugin
-To use liquibase-hive in concert with `liquibase-maven-plugin`:
-1. Make sure liquibase-hive is present in your local or remote (internal) Maven repo.
-1. Add the following to your `pom.xml` file:
-    ```xml
-    <build>
-      <plugins>
-        <!-- (...) -->
-        <plugin>
-          <groupId>org.liquibase</groupId>
-          <artifactId>liquibase-maven-plugin</artifactId>
-          <version>${liquibase.version}</version>
-          <dependencies>
-            <!-- (...) -->
-            <dependency>
-              <groupId>org.liquibase.ext.hive</groupId>
-              <artifactId>liquibase-hive</artifactId>
-              <version>${liquibase.hive.version}</version>
-            </dependency>
-          </dependencies>
-        </plugin>
-      </plugins>
-    </build>
-    ```
-1. Run Liquibase as you normally would using Maven plugin, for example:
-    ```bash 
-    mvn liquibase:update \
-      -Dliquibase.changeLogFile=changelog/changelog.xml \
-      -Dliquibase.driver=com.cloudera.hive.jdbc41.HS2Driver \
-      -Dliquibase.username=<user>
-      -Dliquibase.password=<password>
-      -Dliquibase.url=jdbc:hive2://<host>:<port>/<database>;UID=<user>;UseNativeQuery=1
-    ```
 
 ## Liquibase-hive specific configuration
 
