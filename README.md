@@ -1,7 +1,7 @@
 # project version
 <p align="left">
   <a href="https://mvnrepository.com/artifact/com.github.maketubo/liquibase-hive/1.0.0">
-    <img alt="maven" src="https://img.shields.io/maven-central/v/org.liquibase/liquibase-core/3.8.4">
+    <img alt="maven" src="https://img.shields.io/maven-central/v/com.github.maketubo/liquibase-hive/1.0.0">
   </a>
 
   <a href="https://www.apache.org/licenses/LICENSE-2.0">
