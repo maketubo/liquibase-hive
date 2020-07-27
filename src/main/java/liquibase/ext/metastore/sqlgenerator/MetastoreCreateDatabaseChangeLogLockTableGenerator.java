@@ -1,12 +1,9 @@
 package liquibase.ext.metastore.sqlgenerator;
 
-import liquibase.configuration.LiquibaseConfiguration;
 import liquibase.database.Database;
 import liquibase.datatype.DataTypeFactory;
-import liquibase.ext.metastore.configuration.HiveMetastoreConfiguration;
 import liquibase.ext.metastore.hive.database.HiveDatabase;
 import liquibase.ext.metastore.utils.CustomSqlGenerator;
-import liquibase.ext.metastore.utils.UserSessionSettings;
 import liquibase.sql.Sql;
 import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.core.CreateDatabaseChangeLogLockTableGenerator;
@@ -14,7 +11,6 @@ import liquibase.statement.core.CreateDatabaseChangeLogLockTableStatement;
 import liquibase.statement.core.CreateTableStatement;
 
 public class MetastoreCreateDatabaseChangeLogLockTableGenerator extends CreateDatabaseChangeLogLockTableGenerator {
-    private Boolean syncDb = LiquibaseConfiguration.getInstance().getConfiguration(HiveMetastoreConfiguration.class).getSyncDDL();
 
     @Override
     public boolean supports(CreateDatabaseChangeLogLockTableStatement statement, Database database) {
@@ -34,9 +30,7 @@ public class MetastoreCreateDatabaseChangeLogLockTableGenerator extends CreateDa
                 .addColumn("LOCKGRANTED", DataTypeFactory.getInstance().fromDescription("TIMESTAMP", database))
                 .addColumn("LOCKEDBY", DataTypeFactory.getInstance().fromDescription("STRING", database));
 
-        return syncDb ?
-                CustomSqlGenerator.generateSql(database, UserSessionSettings.syncDdlStart(), createTableStatement, UserSessionSettings.syncDdlStop())
-                : CustomSqlGenerator.generateSql(database, createTableStatement);
+        return CustomSqlGenerator.generateSql(database, createTableStatement);
 
     }
 }

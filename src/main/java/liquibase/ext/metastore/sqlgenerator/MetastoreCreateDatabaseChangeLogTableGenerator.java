@@ -1,12 +1,9 @@
 package liquibase.ext.metastore.sqlgenerator;
 
-import liquibase.configuration.LiquibaseConfiguration;
 import liquibase.database.Database;
 import liquibase.datatype.DataTypeFactory;
-import liquibase.ext.metastore.configuration.HiveMetastoreConfiguration;
 import liquibase.ext.metastore.hive.database.HiveDatabase;
 import liquibase.ext.metastore.utils.CustomSqlGenerator;
-import liquibase.ext.metastore.utils.UserSessionSettings;
 import liquibase.sql.Sql;
 import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.core.CreateDatabaseChangeLogTableGenerator;
@@ -14,7 +11,6 @@ import liquibase.statement.core.CreateDatabaseChangeLogTableStatement;
 import liquibase.statement.core.CreateTableStatement;
 
 public class MetastoreCreateDatabaseChangeLogTableGenerator extends CreateDatabaseChangeLogTableGenerator {
-    private Boolean syncDb = LiquibaseConfiguration.getInstance().getConfiguration(HiveMetastoreConfiguration.class).getSyncDDL();
 
     @Override
     public boolean supports(CreateDatabaseChangeLogTableStatement statement, Database database) {
@@ -46,8 +42,6 @@ public class MetastoreCreateDatabaseChangeLogTableGenerator extends CreateDataba
                 .addColumn("CONTEXTS", DataTypeFactory.getInstance().fromDescription(TypeNameChar, database))
                 .addColumn("LABELS", DataTypeFactory.getInstance().fromDescription(TypeNameChar, database))
                 .addColumn("DEPLOYMENT_ID", DataTypeFactory.getInstance().fromDescription(TypeNameChar, database));
-        return syncDb ?
-                CustomSqlGenerator.generateSql(database, UserSessionSettings.syncDdlStart(), createTableStatement, UserSessionSettings.syncDdlStop())
-                : CustomSqlGenerator.generateSql(database, createTableStatement);
+        return CustomSqlGenerator.generateSql(database, createTableStatement);
     }
 }
